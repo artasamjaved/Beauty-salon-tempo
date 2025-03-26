@@ -28,29 +28,15 @@ const HeroSection = ({
   }, []);
 
   return (
-    <div className="relative w-full h-[800px] bg-gray-100 overflow-hidden">
+    <div className="relative w-full h-[600px] sm:h-[700px] md:h-[800px] bg-gray-100">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute inset-0 bg-black/40 z-10" />
-        <motion.div
-          animate={{
-            y: ["-5%", "0%"],
-            scale: [1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear",
-          }}
-          className="w-full h-[120%] absolute top-0 left-0"
-        >
-          <img
-            src={backgroundImage}
-            alt="Salon Interior"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
+        <img
+          src={backgroundImage}
+          alt="Salon Interior"
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Content */}

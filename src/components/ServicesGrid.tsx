@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ServiceCard from "./ServiceCard";
 import { motion } from "framer-motion";
 
@@ -73,26 +73,36 @@ const defaultServices: Service[] = [
 ];
 
 const ServicesGrid = ({ services = defaultServices }: ServicesGridProps) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = document
+        .getElementById("services-section")
+        ?.getBoundingClientRect();
+      if (rect) {
+        setMousePosition({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top + window.scrollY,
+        });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
   return (
-    <section className="w-full min-h-screen bg-gray-50 py-16 px-4 md:px-8 relative overflow-hidden">
-      <motion.div
-        animate={{
-          y: ["-2%", "2%"],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
-        }}
-        className="absolute top-0 left-0 w-full h-full opacity-5"
+    <section
+      id="services-section"
+      className="w-full min-h-screen bg-gray-50 py-16 px-4 md:px-8 relative overflow-hidden"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
         style={{
-          background:
-            "radial-gradient(circle at 50% 50%, #000 1px, transparent 1px)",
-          backgroundSize: "50px 50px",
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,.1), transparent 40%)`,
         }}
       />
-      <div className="max-w-7xl mx-auto relative">
+      <div className="max-w-7xl mx-auto relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -112,7 +122,7 @@ const ServicesGrid = ({ services = defaultServices }: ServicesGridProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 justify-items-center"
         >
           {services.map((service, index) => (
             <motion.div

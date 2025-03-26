@@ -33,7 +33,10 @@ const NavigationBar = ({
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/50 backdrop-blur-md shadow-md" : "bg-transparent"}`}
+      className={
+        `fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${isScrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-transparent"}` +
+        " from-[0%] opacity-100 bg-none via-[0%] from-transparent"
+      }
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -52,7 +55,7 @@ const NavigationBar = ({
               <a
                 key={link.label}
                 href={link.href}
-                className={`${isScrolled ? "text-gray-800" : "text-white"} hover:text-primary transition-colors duration-200`}
+                className="text-gray-600 hover:text-gray-900 transition-colors"
               >
                 {link.label}
               </a>
@@ -71,7 +74,6 @@ const NavigationBar = ({
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={isScrolled ? "text-gray-800" : "text-white"}
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -90,7 +92,7 @@ const NavigationBar = ({
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-gray-800 hover:text-primary transition-colors px-4 py-2"
+                  className="text-gray-600 hover:text-gray-900 transition-colors px-4 py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}

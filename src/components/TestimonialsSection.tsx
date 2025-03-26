@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import {
   Carousel,
   CarouselContent,
@@ -68,40 +67,22 @@ const TestimonialsSection = ({
   testimonials = defaultTestimonials,
 }: TestimonialsSectionProps) => {
   return (
-    <section className="py-16 bg-gray-50 relative overflow-hidden">
-      <motion.div
-        animate={{
-          x: ["-5%", "5%"],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "linear",
-        }}
-        className="absolute inset-0 opacity-5"
-        style={{
-          background:
-            "linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)",
-          backgroundSize: "60px 60px",
-          backgroundPosition: "0 0, 30px 30px",
-        }}
-      />
-      <div className="container mx-auto px-4 relative">
+    <section className="py-16 bg-[#ffffff]">
+      <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">
           Client Testimonials
         </h2>
 
-        <Carousel className="w-full max-w-5xl mx-auto">
+        <Carousel className="w-full max-w-5xl mx-auto relative">
           <CarouselContent>
             {testimonials.map((testimonial) => (
               <CarouselItem key={testimonial.id}>
                 <Card className="bg-white">
-                  <CardContent className="p-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6">
                       <div className="space-y-4">
                         <div className="flex items-center space-x-4">
-                          <Avatar className="h-12 w-12">
+                          <Avatar className="h-10 w-10 sm:h-12 sm:w-12">
                             <AvatarImage
                               src={testimonial.avatar}
                               alt={testimonial.name}
@@ -111,43 +92,43 @@ const TestimonialsSection = ({
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <h3 className="font-semibold">
+                            <h3 className="font-semibold text-sm sm:text-base">
                               {testimonial.name}
                             </h3>
                             <div className="flex space-x-1">
                               {[...Array(testimonial.rating)].map((_, i) => (
                                 <Star
                                   key={i}
-                                  className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                                  className="h-3 w-3 sm:h-4 sm:w-4 fill-yellow-400 text-yellow-400"
                                 />
                               ))}
                             </div>
                           </div>
                         </div>
-                        <p className="text-gray-600 italic">
+                        <p className="text-gray-600 italic text-sm sm:text-base">
                           "{testimonial.review}"
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-2 sm:gap-4">
                         <div className="space-y-2">
-                          <p className="text-sm font-medium text-center">
+                          <p className="text-xs sm:text-sm font-medium text-center">
                             Before
                           </p>
                           <img
                             src={testimonial.beforeImage}
                             alt="Before treatment"
-                            className="w-full h-48 object-cover rounded-lg"
+                            className="w-full h-32 sm:h-48 object-cover rounded-lg"
                           />
                         </div>
                         <div className="space-y-2">
-                          <p className="text-sm font-medium text-center">
+                          <p className="text-xs sm:text-sm font-medium text-center">
                             After
                           </p>
                           <img
                             src={testimonial.afterImage}
                             alt="After treatment"
-                            className="w-full h-48 object-cover rounded-lg"
+                            className="w-full h-32 sm:h-48 object-cover rounded-lg"
                           />
                         </div>
                       </div>
@@ -157,8 +138,8 @@ const TestimonialsSection = ({
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="-left-12" />
-          <CarouselNext className="-right-12" />
+          <CarouselPrevious className="hidden sm:-left-12 sm:flex" />
+          <CarouselNext className="hidden sm:-right-12 sm:flex" />
         </Carousel>
       </div>
     </section>

@@ -1,9 +1,9 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { Card, CardContent } from "./ui/card";
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 interface ContactSectionProps {
   businessHours?: { day: string; hours: string }[];
@@ -19,115 +19,175 @@ const ContactSection = ({
     { day: "Saturday", hours: "10:00 AM - 6:00 PM" },
     { day: "Sunday", hours: "Closed" },
   ],
-  address = "123 Beauty Lane, Styleville, ST 12345",
-  phone = "(555) 123-4567",
+  address = "123 Beauty Street, New York, NY 10001",
+  phone = "+1 (555) 123-4567",
   email = "contact@beautysalon.com",
-  mapUrl = "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&auto=format&fit=crop&q=60",
+  mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.25436351647!2d-74.11976404950945!3d40.69767006785884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645564756836!5m2!1sen!2s",
 }: ContactSectionProps) => {
   return (
-    <section className="w-full py-16 px-4 md:px-8 bg-gray-50">
+    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-12">Contact Us</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Get in Touch
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Have questions or ready to book? Reach out to us and we'll get back
+            to you shortly.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left Column - Map and Info */}
-          <div className="space-y-8">
-            <Card>
-              <CardContent className="p-0">
-                <img
-                  src={mapUrl}
-                  alt="Salon location"
-                  className="w-full h-[300px] object-cover rounded-t-lg"
-                />
-                <div className="p-6 space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 mt-1 text-primary" />
-                    <p className="text-gray-600">{address}</p>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <Clock className="w-5 h-5 mt-1 text-primary" />
-                    <div className="space-y-2">
-                      {businessHours.map((schedule, index) => (
-                        <p key={index} className="text-gray-600">
-                          <span className="font-medium">{schedule.day}:</span>{" "}
-                          {schedule.hours}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-3">
-                    <Phone className="w-5 h-5 text-primary" />
-                    <p className="text-gray-600">{phone}</p>
-                  </div>
-
-                  <div className="flex items-center space-x-3">
-                    <Mail className="w-5 h-5 text-primary" />
-                    <p className="text-gray-600">{email}</p>
-                  </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white p-6 rounded-lg shadow-lg"
+          >
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Name
+                  </label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Your name"
+                    className="w-full"
+                  />
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Right Column - Contact Form */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-6">Send us a message</h3>
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="firstName" className="text-sm font-medium">
-                      First Name
-                    </label>
-                    <Input
-                      id="firstName"
-                      placeholder="Enter your first name"
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="lastName" className="text-sm font-medium">
-                      Last Name
-                    </label>
-                    <Input
-                      id="lastName"
-                      placeholder="Enter your last name"
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Email
                   </label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder="Your email"
                     className="w-full"
                   />
                 </div>
+              </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    placeholder="Enter your message"
-                    className="w-full min-h-[150px]"
-                  />
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Subject
+                </label>
+                <Input
+                  id="subject"
+                  type="text"
+                  placeholder="How can we help?"
+                  className="w-full"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Message
+                </label>
+                <Textarea
+                  id="message"
+                  placeholder="Your message"
+                  className="w-full min-h-[150px]"
+                />
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full bg-primary hover:bg-primary/90 text-white"
+              >
+                Send Message
+              </Button>
+            </form>
+          </motion.div>
+
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-8"
+          >
+            {/* Map */}
+            <div className="rounded-lg overflow-hidden shadow-lg h-[300px]">
+              <iframe
+                src={mapUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="location map"
+              />
+            </div>
+
+            {/* Contact Details */}
+            <div className="bg-white p-6 rounded-lg shadow-lg space-y-6">
+              <div className="flex items-start space-x-4">
+                <MapPin className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
+                  <p className="text-gray-600">{address}</p>
                 </div>
+              </div>
 
-                <Button className="w-full" size="lg">
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+              <div className="flex items-start space-x-4">
+                <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
+                  <p className="text-gray-600">{phone}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
+                  <p className="text-gray-600">{email}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <Clock className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Business Hours
+                  </h3>
+                  <div className="space-y-2">
+                    {businessHours.map((schedule, index) => (
+                      <div
+                        key={index}
+                        className="flex justify-between text-gray-600"
+                      >
+                        <span>{schedule.day}</span>
+                        <span className="font-medium">{schedule.hours}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

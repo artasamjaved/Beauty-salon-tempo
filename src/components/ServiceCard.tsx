@@ -34,7 +34,7 @@ const ServiceCard = ({
   onBook = () => console.log("Book clicked"),
 }: ServiceCardProps) => {
   return (
-    <Card className="w-[350px] h-[400px] bg-white overflow-hidden group transition-all duration-300 hover:shadow-lg">
+    <Card className="w-full sm:w-[350px] h-[400px] bg-white/80 backdrop-blur-sm overflow-hidden group transition-all duration-300 hover:shadow-lg hover:scale-105">
       <div className="relative h-48 overflow-hidden">
         <img
           src={imageUrl}
