@@ -12,7 +12,7 @@ interface ContactSectionProps {
   email?: string;
   mapUrl?: string;
 }
-
+ 
 const ContactSection = ({
   businessHours = [
     { day: "Monday - Friday", hours: "9:00 AM - 7:00 PM" },
