@@ -7,7 +7,7 @@ function App() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <>
-        <Routes>
+        <Routes> 
           <Route path="/" element={<Home />} />
         </Routes>
         {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
