@@ -9,7 +9,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {},
 };
-export default meta;
+export default meta; 
 
 export const Default = {
   render: (args: any) => <Textarea {...args} />,
