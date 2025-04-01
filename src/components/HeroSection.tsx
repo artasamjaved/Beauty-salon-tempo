@@ -17,7 +17,7 @@ const HeroSection = ({
 }: HeroSectionProps) => {
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => { 
     const handleScroll = () => {
       const isScrolled = window.scrollY > 50;
       setScrolled(isScrolled);
