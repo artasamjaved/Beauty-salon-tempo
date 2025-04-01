@@ -11,7 +11,7 @@ interface ContactSectionProps {
   phone?: string;
   email?: string;
   mapUrl?: string;
-}
+}  
  
 const ContactSection = ({
   businessHours = [
