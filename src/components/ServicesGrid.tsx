@@ -13,7 +13,7 @@ interface Service {
 
 interface ServicesGridProps {
   services?: Service[];
-}
+} 
 
 const defaultServices: Service[] = [
   {
