@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Star } from "lucide-react";
 
 interface Testimonial {
-  id: number;
+  id: number; 
   name: string;
   avatar: string;
   review: string;
