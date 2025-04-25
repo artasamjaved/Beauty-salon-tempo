@@ -4,7 +4,7 @@ import Home from "./components/home";
 import routes from "tempo-routes";
 
 function App() {
-  return (
+  return ( 
     <Suspense fallback={<p>Loading...</p>}>
       <>
         <Routes> 
